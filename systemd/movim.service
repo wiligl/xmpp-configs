@@ -1,0 +1,17 @@
+[Unit]
+Description=Movim daemon
+After=nginx.service network.target local-fs.target
+
+[Service]
+User=www-data
+Type=simple
+ExecStart=/usr/bin/php daemon.php start
+WorkingDirectory=/var/www/movim/
+StandardOutput=journal
+SyslogIdentifier=movim
+PIDFile=/run/movim.pid
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
